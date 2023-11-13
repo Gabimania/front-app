@@ -1,3 +1,4 @@
+<a mat-stroked-button routerLink = "/contact/new" id="new-contact">New Contact</a>
 <table mat-table [dataSource]="contacts" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
@@ -40,7 +41,7 @@
       </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDetailForm(row)"></tr>
   </table>
   
   
