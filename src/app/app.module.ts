@@ -14,6 +14,8 @@ import { ContactNewComponent } from './contact-new/contact-new.component';
 import { FormsModule } from '@angular/forms';
 import { ProductNewComponent } from './product-new/product-new.component';
 import { Product } from './model/Product';
+import { ContactUpdateComponent } from './contact-update/contact-update.component';
+import { ProductUpdateComponent } from './product-update/product-update.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { Product } from './model/Product';
     ProductDetailComponent,
     ContactNewComponent,
     ProductNewComponent,
+    ContactUpdateComponent,
+    ProductUpdateComponent,
     
   ],
   imports: [

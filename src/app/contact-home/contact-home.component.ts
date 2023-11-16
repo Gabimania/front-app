@@ -24,6 +24,10 @@ export class ContactHomeComponent implements OnInit {
     this.router.navigate(["/contact", row.id]);
   }
 
+  updateContactDetail(contact:any){
+    this.router.navigate(["/contact/update", contact]);
+  }
+
   displayedColumns: string[] = [
     "id",
     "name",
@@ -31,5 +35,6 @@ export class ContactHomeComponent implements OnInit {
     "secondusername",
     "phone",
     "email",
+    "actions"
   ];
 }

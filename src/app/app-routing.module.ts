@@ -6,15 +6,19 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductHomeComponent } from './product-home/product-home.component';
 import { ContactNewComponent } from './contact-new/contact-new.component';
 import { ProductNewComponent } from './product-new/product-new.component';
+import { ContactUpdateComponent } from './contact-update/contact-update.component';
+import { ProductUpdateComponent } from './product-update/product-update.component';
 
 
 const routes: Routes = [
   {path: 'contacts', component: ContactHomeComponent},
   {path: 'contact/new', component: ContactNewComponent},
   {path: 'contact/:id',component: ContactDetailComponent},
+  {path: 'contact/update/:id',component: ContactUpdateComponent},
   {path: 'products', component: ProductHomeComponent},
   {path: 'product/new', component: ProductNewComponent},
   {path: 'product/:id',component: ProductDetailComponent},
+  {path: 'product/update/:id',component: ProductUpdateComponent}
   
 ];
 

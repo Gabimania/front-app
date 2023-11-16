@@ -4,11 +4,20 @@
       <p><mat-icon>person</mat-icon><strong>Nombre:</strong> {{product.name}}</p>
       <p><mat-icon>person</mat-icon><strong>Stock:</strong> {{product.stock}}</p>
       <p><mat-icon>person</mat-icon><strong>Precio:</strong> {{product.price}}</p>
-      <p><mat-icon>person</mat-icon><strong>Activo:</strong> {{product.active}}</p>
+      <p><mat-icon>person</mat-icon><strong>Activo:</strong> {{this.product.active ? 'Disponible' : 'No disponible'}}</p>
       <p>
         <mat-icon>person</mat-icon><strong>Fecha Añadido:</strong> {{product.date_added}}
       </p>
       <p><mat-icon>person</mat-icon><strong>Categoría:</strong> {{product.kind_product?.name}}</p>
     </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button type="button" (click)="updateProduct()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-raised-button type="button" color="warn" (click)="closeProduct()">
+        <mat-icon>close</mat-icon>
+      </button>
+  
+    </mat-card-actions>
   </mat-card>
   

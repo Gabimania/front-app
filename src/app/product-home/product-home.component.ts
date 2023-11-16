@@ -24,6 +24,10 @@ export class ProductHomeComponent implements OnInit {
     this.router.navigate(["/product", row.id]);
   }
 
+  updateProductDetail(product:any){
+    this.router.navigate(["/product/update", product]);
+  }
+
   displayedColumns: string[] = [
     "id",
     "name",
@@ -31,7 +35,8 @@ export class ProductHomeComponent implements OnInit {
     "price",
     "active",
     "date_added",
-    "kind_product"
+    "kind_product",
+    "actions"
   ];
 
 }

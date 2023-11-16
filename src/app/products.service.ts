@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class ProductsService {
+
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<any> {
@@ -26,5 +27,13 @@ export class ProductsService {
     const headers = new HttpHeaders().set("Content-type", "application/json");
     const body = product;
     this.http.post(url, body, { headers }).subscribe();
+  }
+
+  updateProduct(product: any): void{
+    const url = "http://localhost:30030/products/update";
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    const body = product;
+    this.http.put(url,body,{headers}).subscribe();
+
   }
 }

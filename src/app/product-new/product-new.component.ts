@@ -35,6 +35,8 @@ export class ProductNewComponent implements OnInit {
     }else{
       this.product.active= false;
     }
+
+    
     const product = {
       name: this.product.name,
       stock: this.product.stock,
