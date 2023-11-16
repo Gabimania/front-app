@@ -38,7 +38,7 @@ export class ProductUpdateComponent implements OnInit {
         if (!this.product.kind_product){
           this.product.kind_product = new Category();
         }
-        console.log(this.product.kind_product + " jajajajajajajajaj");
+        console.log(this.product.kind_product);
   });
 
 }
