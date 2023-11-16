@@ -21,19 +21,24 @@ export class ContactsService {
     return this.http.post(url, body, { headers });
   }
 
-  newContact(contact: any): void{
+  newContact(contact: any): void {
     const url = "http://localhost:30030/contacts/add";
     const headers = new HttpHeaders().set("Content-type", "application/json");
     const body = contact;
-    this.http.post(url,body,{headers}).subscribe();
-
+    this.http.post(url, body, { headers }).subscribe();
   }
 
-  updateContact(contact: any): void{
+  updateContact(contact: any): void {
     const url = "http://localhost:30030/contacts/update";
     const headers = new HttpHeaders().set("Content-type", "application/json");
     const body = contact;
-    this.http.put(url,body,{headers}).subscribe();
+    this.http.put(url, body, { headers }).subscribe();
+  }
 
+  deleteContact(contactId: number): void {
+    const url = "http://localhost:30030/contacts/delete";
+    const body = { id: contactId };
+    const options = { body: body, headers: new HttpHeaders() };
+    this.http.delete(url, options).subscribe();
   }
 }
