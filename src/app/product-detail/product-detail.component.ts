@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ProductDeleteComponent } from '../product-delete/product-delete.component';
 
 @Component({
   selector: 'app-product-detail',
@@ -13,6 +15,7 @@ export class ProductDetailComponent implements OnInit {
     private produtsService: ProductsService,
     private route: ActivatedRoute,
     private router: Router,
+    public dialog: MatDialog
     
   ) { }
 
@@ -22,6 +25,10 @@ export class ProductDetailComponent implements OnInit {
     .subscribe((data) => {
       this.product = data;
     });
+  }
+
+  openDeleteDialog(productId: number): void{
+    this.dialog.open(ProductDeleteComponent, {data: {productId:productId}})
   }
 
   updateProduct(){

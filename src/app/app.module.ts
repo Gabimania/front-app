@@ -17,6 +17,7 @@ import { Product } from './model/Product';
 import { ContactUpdateComponent } from './contact-update/contact-update.component';
 import { ProductUpdateComponent } from './product-update/product-update.component';
 import { ContactDeleteComponent } from './contact-delete/contact-delete.component';
+import { ProductDeleteComponent } from './product-delete/product-delete.component';
 
 @NgModule({
   declarations: [
@@ -30,9 +31,10 @@ import { ContactDeleteComponent } from './contact-delete/contact-delete.componen
     ContactUpdateComponent,
     ProductUpdateComponent,
     ContactDeleteComponent,
+    ProductDeleteComponent
     
   ],
-  entryComponents: [ContactDeleteComponent],
+  entryComponents: [ContactDeleteComponent, ProductDeleteComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
