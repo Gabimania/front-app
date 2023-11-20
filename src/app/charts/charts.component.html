@@ -1,0 +1,102 @@
+<mat-card class="card">
+  <mat-card-title> Charts-Contacts </mat-card-title>
+  <mat-card-content>
+    <div class="chart-row">
+      <div>
+        <p><strong>Initial Surname</strong></p>
+        <ngx-charts-bar-vertical
+          [view]="[400, 300]"
+          [results]="initialLetter"
+          [xAxis]="true"
+          [yAxis]="true"
+          [legend]="false"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          xAxisLabel="Inicial del apellido"
+          yAxisLabel="Número de contactos"
+        >
+        </ngx-charts-bar-vertical>
+      </div>
+      <div>
+        <p><strong>Lenght of name</strong></p>
+        <ngx-charts-line-chart
+          [view]="[400, 300]"
+          [results]="contactsByFullName"
+          [xAxis]="true"
+          [yAxis]="true"
+          [legend]="false"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          xAxisLabel="Full Name Lenght"
+          yAxisLabel="number of contacts"
+        >
+        </ngx-charts-line-chart>
+      </div>
+    </div>
+    <div class="chart-row">
+      <div>
+        <p><strong>Extensions</strong></p>
+        <ngx-charts-pie-chart
+          [view]="[400, 300]"
+          [results]="emailExtensions"
+          [labels]="true"
+          [doughnut]="true"
+        >
+        </ngx-charts-pie-chart>
+      </div>
+      <div>
+        <p><strong>Prefix</strong></p>
+        <ngx-charts-bar-horizontal
+          [view]="[400, 300]"
+          [results]="phonePrefixData"
+          [xAxis]="true"
+          [yAxis]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          xAxisLabel="Number of Contacts"
+          yAxisLabel="Phone Prefix"
+        >
+        </ngx-charts-bar-horizontal>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+<mat-card class="card">
+  <mat-card-title> Charts-Contacts </mat-card-title>
+  <mat-card-content>
+    <div class="chart-row">
+      <div>
+        <p><strong>Products Stock</strong></p>
+        <ngx-charts-pie-chart
+          [view]="[400, 300]"
+          [results]="productsStock"
+          [labels]="true"
+          [doughnut]="true"
+        >
+        </ngx-charts-pie-chart>
+      </div>
+      <div>
+        <p><strong>Aquí va otra gráfica</strong></p>
+        <ngx-charts-bar-horizontal
+          [view]="[400, 300]"
+          [results]="productsList"
+          [xAxis]="true"
+          [yAxis]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          xAxisLabel="Number of Contacts"
+          yAxisLabel="Phone Prefix"
+        >
+        </ngx-charts-bar-horizontal>
+      </div>
+    </div>
+    <div class="chart-row">
+      <div>
+        <p><strong>Tercera Gráfica</strong></p>
+      </div>
+      <div>
+        <p><strong>Si tal le meto otra</strong></p>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
