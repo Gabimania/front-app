@@ -15,10 +15,12 @@ export class ChartsComponent implements OnInit {
   phonePrefixData = [];
   productsStock = [];
   productsList = [];
+  productsStockPrice = [];
+  productsDate = [];
   constructor(
     private contactsService: ContactsService,
     private productsService: ProductsService,
-    private categoryService: CategoryService,
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit() {
@@ -27,16 +29,15 @@ export class ChartsComponent implements OnInit {
       this.contactsByFullName = this.calculateContactsByFullNameData(data);
       this.emailExtensions = this.calculateEmailExtensionsData(data);
       this.phonePrefixData = this.generatePhoneProfixData(data);
-      
     });
-    this.productsService.getProducts().subscribe((data)=>{
-      this.categoryService.getCategories().subscribe(data2=>{
+    this.productsService.getProducts().subscribe((data) => {
+      this.categoryService.getCategories().subscribe((data2) => {
         this.productsStock = this.countProductsStock(data);
         this.productsList = this.productsPrices(data);
-
-      })
-      
-    })
+        this.productsStockPrice = this.ShowStockandPrice(data, data2);
+        this.productsDate = this.productsByDate(data);
+      });
+    });
   }
   calculateInitialLettersData(contacts: any[]): any {
     return contacts.reduce((result, contact) => {
@@ -134,35 +135,99 @@ export class ChartsComponent implements OnInit {
       let pName = product.name;
       let pStock = product.stock;
       if (stockMap.has(pName)) {
-        stockMap.set(pName, stockMap.get(pName)+ pStock);
+        stockMap.set(pName, stockMap.get(pName) + pStock);
       } else {
         stockMap.set(pName, pStock);
       }
     });
     let productsStock = [];
-    stockMap.forEach((value, key)=>{
-      productsStock.push({name:key, value:value});
+    stockMap.forEach((value, key) => {
+      productsStock.push({ name: key, value: value });
     });
 
     return productsStock;
   }
 
-  productsPrices(products: any[]):any{
+  productsPrices(products: any[]): any {
     let productMap = new Map<string, number>();
-    
-    products.forEach((product)=>{
+
+    products.forEach((product) => {
       let productName = product.name;
       let productPrice = product.price;
       productMap.set(productName, productPrice);
-      
-    })
+    });
     let productsList = [];
-    productMap.forEach((value,key)=>{
-      productsList.push({name:key, value:value});
-      console.log(productsList);
-    })
+    productMap.forEach((value, key) => {
+      productsList.push({ name: key, value: value });
+    });
     return productsList;
   }
+
+  ShowStockandPrice(products: any[], categories: any[]): any {
+    const total = [];
+    const total2 = [];
+    var categoryData = []; //array de objetos
+    var newCategory = {};
+
+    for (let i = 0; i < categories.length; i++) {
+      total[i] = 0;
+      total2[i] = 0;
+      for (let j = 0; j < products.length; j++) {
+        if (products[j].kind_product.name == categories[i].name) {
+          total[i] += products[j].stock * products[j].price;
+          total2[i] += products[j].stock;
+        }
+      }
+      addCategory(categories[i].name, "price", total[i], "stock", total2[i]);
+    }
+
+    function addCategory(name, price, value, stock, value2) {
+      newCategory = {
+        name: name,
+        series: [
+          {
+            name: price,
+            value: value,
+          },
+          {
+            name: stock,
+            value: value2,
+          },
+        ],
+      };
+      categoryData.push(newCategory);
+    }
+    return categoryData;
+  }
+
+  productsByDate(products: any[]): any {
+    products.sort((a, b) => b.price - a.price);
+    var expensivestProducts = [];
+    var newProduct = {};
+
+    let x = 10;
+    for (let i = 0; i < x; i++) {
+      var expresionRegular = /\d{4}/;
+
+      addProduct(
+        products[i].name,
+        products[i].price,
+        products[i].date_added.match(expresionRegular)[0]
+      );
+    }
+
+    function addProduct(name, price, date) {
+      newProduct = {
+        name: name,
+        series: [
+          {
+            name: date,
+            value: price,
+          },
+        ],
+      };
+      expensivestProducts.push(newProduct);
+    }
+    return expensivestProducts;
+  }
 }
-
-
